@@ -59,16 +59,72 @@ exports.containsUpper =function(str){
 
 
 exports.containsLower =function(str){
-
+  let hasLower = false;
+  try{
+    for(let i=0; i<str.length; i++){
+      hasLower = inRange(str[i],97,122);
+      if(hasLower == true){
+        break;
+      }
+    }
+  if(hasLower == true){
+      throw new PasswordMessage("Has lowercase character");
+    }
+    else{
+      throw new PasswordMessage("Doesn't have lowercase character");
+    }
+  }
+  catch(e){
+    console.log(e.name+": "+e.message);
+    return hasLower;
+  }
 }
 
 
 exports.containsNumerical =function(str){
-
+  let hasNum = false;
+  try{
+    for(let i=0; i<str.length; i++){
+      hasNum = inRange(str[i],48,57);
+      if(hasNum == true){
+        break;
+      }
+    }
+  if(hasNum == true){
+      throw new PasswordMessage("Has numerical character");
+    }
+    else{
+      throw new PasswordMessage("Doesn't have numerical character");
+    }
+  }
+  catch(e){
+    console.log(e.name+": "+e.message);
+    return hasNum;
+  }
 }
 
 
-exports.containsSpecial =function(str){
-
+exports.containsSpecial = function(str){
+  let hasSpecial = false;
+  let special = [33,64,35,36,37,94,38,42];
+  try{
+    for(let i=0; i<str.length; i++){
+      for(let j=0; j<special.length; j++){
+        hasSpecial = inRange(str[i],special[j],special[j]);
+        if(hasSpecial == true){
+          break;
+        }
+      }
+    }
+    if(hasSpecial == true){
+      throw new PasswordMessage("Has a special character");
+    }
+    else{
+      throw new PasswordMessage("Doesn't have a special character");
+    }
+  }
+  catch(e){
+    console.log(e.name+": "+e.message);
+    return hasSpecial;
+  }
 }
-exports.containsUpper("Test");
