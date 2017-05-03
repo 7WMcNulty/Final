@@ -35,7 +35,7 @@ exports.checkLength = function(str){
 }
 
 
-exports.containsUpper =function(str){
+exports.containsUpper = function(str){
   let hasUpper = false;
   try{
     for(let i=0; i<str.length; i++){
@@ -58,7 +58,7 @@ exports.containsUpper =function(str){
 }
 
 
-exports.containsLower =function(str){
+exports.containsLower = function(str){
   let hasLower = false;
   try{
     for(let i=0; i<str.length; i++){
@@ -115,12 +115,15 @@ exports.containsSpecial = function(str){
           break;
         }
       }
+      if(hasSpecial == true){
+        break;
+      }//Second break to stop parentheses, slash, etc. from preventing function from recognizing special character.
     }
     if(hasSpecial == true){
-      throw new PasswordMessage("Has a special character");
+      throw new PasswordMessage("Has special character");
     }
     else{
-      throw new PasswordMessage("Doesn't have a special character");
+      throw new PasswordMessage("Doesn't have special character");
     }
   }
   catch(e){
